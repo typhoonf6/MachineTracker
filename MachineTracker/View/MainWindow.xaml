@@ -14,13 +14,17 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.5*"/>
-            <ColumnDefinition Width="6*"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="8*"/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
         <!-- Grid Column 0 - Nav Drawer -->
         <StackPanel x:Name="nd" 
                     Grid.Column="0" 
+                    Grid.RowSpan="2"
                     Background="{StaticResource PrimaryHueDarkBrush}">
             <StackPanel Orientation="Horizontal" Background="White">
                 <Image Source="/Assets/logo.png" 
@@ -43,8 +47,6 @@
 
         <!-- Grid Column 1 - View -->
 
-        <!-- Grid Column 2 - Contextual Menu -->
-
-
+        
     </Grid>
 </Window>
