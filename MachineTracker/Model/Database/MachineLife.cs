@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MachineTracker
@@ -6,12 +7,13 @@ namespace MachineTracker
     /// <summary>
     /// Current life of the machine
     /// </summary>
-    class MachineLife
+    public class MachineLife
     {
         /// <summary>
         /// Identifier for this lifing data
         /// </summary>
-        public int CurrentLifeID { get; set; }
+        [Key, ForeignKey("Machine")]
+        public int MachineLifeID { get; set; }
 
         /// <summary>
         /// Current Hours
@@ -31,7 +33,6 @@ namespace MachineTracker
         /// <summary>
         /// Link to the machine this is associated with
         /// </summary>
-        [ForeignKey("UnitNo")]
         public virtual Machine Machine { get; set; }
     }
 }

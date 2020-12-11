@@ -7,7 +7,7 @@ namespace MachineTracker
     /// <summary>
     /// A status enum
     /// </summary>
-    enum Status
+    public enum Status
     {
         ok,
         inMaint,
@@ -17,12 +17,17 @@ namespace MachineTracker
     /// <summary>
     /// Machine object
     /// </summary>
-    class Machine
+    public class Machine
     {
+        /// <summary>
+        /// Database set ID for the entity
+        /// </summary>
+        [Key, Required]
+        public int MachineID { get; set; }
+
         /// <summary>
         /// The number of the machine. Must be unique.
         /// </summary>
-        [Key, Required]
         public string UnitNo { get; set; }
 
         /// <summary>
@@ -49,12 +54,17 @@ namespace MachineTracker
         /// <summary>
         /// Object containing the current life of the machine
         /// </summary>
-        [ForeignKey("CurrentLifeID")]
         public virtual MachineLife MachineLife { get; set; }
 
         /// <summary>
         /// Service history list
         /// </summary>
         public virtual ICollection<ServiceHistory> ServiceHistory { get; set; }
+
+        public Machine()
+        {
+            this.MachineLife = new MachineLife();
+            this.ServiceHistory = new HashSet<ServiceHistory>();
+        }
     }
 }

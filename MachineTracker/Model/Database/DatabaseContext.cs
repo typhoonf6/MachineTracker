@@ -10,6 +10,7 @@ namespace MachineTracker
         public DbSet<Machine> Machines { get; set; }
         public DbSet<ServiceHistory> ServiceHistories { get; set; }
         public DbSet<MachineLife> MachineLives { get; set; }
+        public DbSet<Employee> Employees { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

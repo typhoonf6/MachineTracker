@@ -5,7 +5,7 @@ namespace MachineTracker
     /// <summary>
     /// An employee of the company
     /// </summary>
-    class Employee
+    public class Employee
     {
         /// <summary>
         /// The employee id

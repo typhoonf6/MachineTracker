@@ -17,6 +17,16 @@ namespace MachineTracker
         /// </summary>
         public MainWindowViewModel()
         {
+            //var context = new DatabaseContext();
+
+            //context.Database.EnsureCreated();
+
+            //var machine = context.Machines.Add(new Machine { UnitNo = "Test123", Serial = "12345", Status = Status.ok, Type = "Truck" });
+
+            //machine.Entity.MachineLife.Hours = 100;
+
+            //context.SaveChanges();
+
             MenuItems = new List<MenuItem>
             {
                 new MenuItem("Service View", MaterialDesignThemes.Wpf.PackIconKind.Calendar),

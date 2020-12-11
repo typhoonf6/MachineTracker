@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MachineTracker
@@ -6,11 +7,12 @@ namespace MachineTracker
     /// <summary>
     /// Service history entry of the machine
     /// </summary>
-    class ServiceHistory
+    public class ServiceHistory
     {
         /// <summary>
         /// Identifier for the service history entry
         /// </summary>
+        [Key, ForeignKey("Machine")]
         public int ServiceHistoryID { get; set; }
 
         /// <summary>
@@ -31,17 +33,16 @@ namespace MachineTracker
         /// <summary>
         /// The employee that carried out the service
         /// </summary>
-        public Employee CarriedOutBy { get; set; }
+        public virtual Employee CarriedOutBy { get; set; }
 
         /// <summary>
         /// Who entered the data
         /// </summary>
-        public Employee EnteredBy { get; set; }
+        public virtual Employee EnteredBy { get; set; }
 
         /// <summary>
         /// Link to the machine this is associated with
         /// </summary>
-        [ForeignKey("UnitNo")]
         public virtual Machine Machine { get; set; }
     }
 }
