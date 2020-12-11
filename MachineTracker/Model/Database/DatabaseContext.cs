@@ -7,7 +7,9 @@ namespace MachineTracker
     /// </summary>
     class DatabaseContext : DbContext
     {
-        // public DbSet<Machine> Machines { get; set; }
+        public DbSet<Machine> Machines { get; set; }
+        public DbSet<ServiceHistory> ServiceHistories { get; set; }
+        public DbSet<MachineLife> MachineLives { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

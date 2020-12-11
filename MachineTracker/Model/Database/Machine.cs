@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MachineTracker
 {
@@ -43,25 +44,17 @@ namespace MachineTracker
         /// <summary>
         /// Status of the machine <see cref="Status"/>
         /// </summary>
-        public Status Status { get; set; } = Status.ok;
+        public Status? Status { get; set; }
 
         /// <summary>
         /// Object containing the current life of the machine
         /// </summary>
+        [ForeignKey("CurrentLifeID")]
         public virtual MachineLife MachineLife { get; set; }
 
         /// <summary>
         /// Service history list
         /// </summary>
         public virtual ICollection<ServiceHistory> ServiceHistory { get; set; }
-
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        public Machine()
-        {
-            this.ServiceHistory = new List<ServiceHistory>();
-            this.MachineLife = new MachineLife();
-        }
     }
 }

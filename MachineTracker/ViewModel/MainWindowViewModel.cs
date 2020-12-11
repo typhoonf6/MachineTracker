@@ -21,7 +21,8 @@ namespace MachineTracker
             {
                 new MenuItem("Service View", MaterialDesignThemes.Wpf.PackIconKind.Calendar),
                 new MenuItem("Machines", MaterialDesignThemes.Wpf.PackIconKind.Tractor),
-                new MenuItem("Personnel", MaterialDesignThemes.Wpf.PackIconKind.User)
+                new MenuItem("Personnel", MaterialDesignThemes.Wpf.PackIconKind.User),
+                new MenuItem("Data Ingest", MaterialDesignThemes.Wpf.PackIconKind.DatabaseAdd)
             };
         }
     }
