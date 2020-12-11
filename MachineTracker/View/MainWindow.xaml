@@ -5,12 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MachineTracker"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        d:DataContext="{d:DesignInstance Type=local:MainWindowViewModel}"
         mc:Ignorable="d" Height="972" Width="1728" ResizeMode="CanResize" 
             WindowStyle="None" MouseDown="Window_MouseDown">
     <Window.Resources>
         <local:MenuWidthConverter x:Key="menuWidthConverter"/>
+        <DataTemplate DataType="{x:Type local:MachinesViewModel}">
+            <local:MachinesView/>
+        </DataTemplate>
     </Window.Resources>
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.5*" MinWidth="170"/>
@@ -21,10 +24,12 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="{StaticResource PrimaryHueDarkBrush}"/>
         <!-- Grid Column 0 - Nav Drawer -->
         <StackPanel x:Name="nd" 
                     Grid.Column="0" 
                     Grid.RowSpan="2"
+                    Grid.Row="1"
                     Background="{StaticResource PrimaryHueDarkBrush}">
             <StackPanel Orientation="Horizontal" Background="White">
                 <Image Source="/Assets/logo.png" 
@@ -46,7 +51,7 @@
         </StackPanel>
 
         <!-- Grid Column 1 - View -->
+        <ContentControl Grid.Column="1" Grid.Row="1" Content="{Binding Path=SelectedView}"/>
 
-        
     </Grid>
 </Window>

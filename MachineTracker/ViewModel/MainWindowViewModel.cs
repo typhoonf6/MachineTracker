@@ -13,19 +13,16 @@ namespace MachineTracker
         public List<MenuItem> MenuItems { get; set; }
 
         /// <summary>
+        /// The view model thats displayed
+        /// </summary>
+        public object SelectedView { get; private set; }
+
+        /// <summary>
         /// Default Constructor
         /// </summary>
         public MainWindowViewModel()
         {
-            //var context = new DatabaseContext();
-
-            //context.Database.EnsureCreated();
-
-            //var machine = context.Machines.Add(new Machine { UnitNo = "Test123", Serial = "12345", Status = Status.ok, Type = "Truck" });
-
-            //machine.Entity.MachineLife.Hours = 100;
-
-            //context.SaveChanges();
+            SelectedView = new MachinesViewModel();
 
             MenuItems = new List<MenuItem>
             {

@@ -1,0 +1,105 @@
+﻿<UserControl x:Class="MachineTracker.MachinesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:MachineTracker" 
+             d:DataContext="{d:DesignInstance Type=local:MachinesViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Storyboard x:Key="OpenMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" 
+                                           Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="70"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="300"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="CloseMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" 
+                                           Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="300"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="70"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
+
+    <UserControl.Triggers>
+            <EventTrigger RoutedEvent="ButtonBase.Click"
+                      SourceName="ButtonOpenMenu">
+                <BeginStoryboard Storyboard="{StaticResource OpenMenu}"/>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="ButtonBase.Click" 
+                      SourceName="ButtonCloseMenu">
+                <BeginStoryboard Storyboard="{StaticResource CloseMenu}"/>
+            </EventTrigger>
+        </UserControl.Triggers>
+
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <DataGrid Grid.ColumnSpan="2" ItemsSource="{Binding Machines}"/>
+
+        <Grid x:Name="GridMenu" 
+              Width="70" 
+              HorizontalAlignment="Right" 
+              Background="#FF31577E"
+              Grid.Column="1">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="2" 
+                                  ShadowDepth="1" 
+                                  Color="#FFAEAEAE"/>
+            </Grid.Effect>
+            <StackPanel>
+                <Grid Height="150" 
+                      Background="White" 
+                      RenderTransformOrigin="0.5,0.5">
+                    <Grid.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Grid.RenderTransform>
+                    <Button x:Name="ButtonOpenMenu" 
+                            Height="60" 
+                            Width="60" 
+                            Margin="0,5" 
+                            HorizontalAlignment="Left" 
+                            VerticalAlignment="Top" 
+                            Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
+                            Background="{x:Null}" 
+                            BorderBrush="{x:Null}" 
+                            Foreground="#FF31577E"
+                            Click="ButtonOpenMenu_Click">
+                        <materialDesign:PackIcon Kind="ArrowLeft" 
+                                                 Width="25" 
+                                                 Height="25"/>
+                    </Button>
+                    <Button x:Name="ButtonCloseMenu" 
+                            Visibility="Collapsed" 
+                            Height="60" 
+                            Width="60" 
+                            Margin="0,5" 
+                            HorizontalAlignment="Left" 
+                            VerticalAlignment="Top" 
+                            Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
+                            Background="{x:Null}" 
+                            BorderBrush="{x:Null}" 
+                            Foreground="#FF31577E"
+                            Click="ButtonCloseMenu_Click">
+                        <materialDesign:PackIcon Kind="ArrowRight" 
+                                                 Width="25" 
+                                                 Height="25"/>
+                    </Button>
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

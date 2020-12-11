@@ -8,7 +8,7 @@ namespace MachineTracker
 {
     class CSVHelper
     {
-        public async void IngestCSV(string fileLocation, DatabaseContext context)
+        public void IngestCSV(string fileLocation, DatabaseContext context)
         {
             var dataTable = new DataTable();
 
@@ -26,6 +26,8 @@ namespace MachineTracker
 
                 // CREATE: Machine, MachineLife
             }
+
+            dataTable.Dispose();
         }
     }
 }

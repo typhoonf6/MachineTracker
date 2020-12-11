@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MachineTracker
 {
@@ -61,6 +60,9 @@ namespace MachineTracker
         /// </summary>
         public virtual ICollection<ServiceHistory> ServiceHistory { get; set; }
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public Machine()
         {
             this.MachineLife = new MachineLife();
