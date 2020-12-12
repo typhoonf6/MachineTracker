@@ -13,6 +13,7 @@ namespace MachineTracker
         /// Identifier for this lifing data
         /// </summary>
         [Key, ForeignKey("Machine")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int MachineLifeID { get; set; }
 
         /// <summary>

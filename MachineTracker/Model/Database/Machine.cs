@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MachineTracker
 {
@@ -21,7 +22,8 @@ namespace MachineTracker
         /// <summary>
         /// Database set ID for the entity
         /// </summary>
-        [Key, Required]
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int MachineID { get; set; }
 
         /// <summary>

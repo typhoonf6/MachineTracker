@@ -13,6 +13,7 @@ namespace MachineTracker
         /// Identifier for the service history entry
         /// </summary>
         [Key, ForeignKey("Machine")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ServiceHistoryID { get; set; }
 
         /// <summary>

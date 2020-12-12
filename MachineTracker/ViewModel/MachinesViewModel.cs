@@ -21,6 +21,17 @@ namespace MachineTracker
         public MachinesViewModel()
         {
             Context = new DatabaseContext();
+
+            LoadMachineData();
+
+            // CSVHelper.IngestCSV("C:\\Users\\crust\\OneDrive\\Desktop\\Kitch\\Downer+Fleet_selected_2019-08-12_17.csv", Context);
+
+            // Context.SaveChanges();
+        }
+
+        private void LoadMachineData()
+        {
+            Context.Database.EnsureCreated();
             Context.Machines.Load();
             Machines = Context.Machines.Local.ToObservableCollection();
         }

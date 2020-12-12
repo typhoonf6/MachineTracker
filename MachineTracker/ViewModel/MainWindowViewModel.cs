@@ -15,21 +15,26 @@ namespace MachineTracker
         /// <summary>
         /// The view model thats displayed
         /// </summary>
-        public object SelectedView { get; private set; }
+        public object SelectedView { get; set; }
+
+        /// <summary>
+        /// The command that runs when a menu item is selected
+        /// </summary>
+        public ChangeViewCommand ChangeViewCommand { get; set; }
 
         /// <summary>
         /// Default Constructor
         /// </summary>
         public MainWindowViewModel()
         {
-            SelectedView = new MachinesViewModel();
+            ChangeViewCommand = new ChangeViewCommand(this);
 
             MenuItems = new List<MenuItem>
             {
-                new MenuItem("Service View", MaterialDesignThemes.Wpf.PackIconKind.Calendar),
-                new MenuItem("Machines", MaterialDesignThemes.Wpf.PackIconKind.Tractor),
-                new MenuItem("Personnel", MaterialDesignThemes.Wpf.PackIconKind.User),
-                new MenuItem("Data Ingest", MaterialDesignThemes.Wpf.PackIconKind.DatabaseAdd)
+                new MenuItem("Service View", MaterialDesignThemes.Wpf.PackIconKind.Calendar, "ServiceView"),
+                new MenuItem("Machines", MaterialDesignThemes.Wpf.PackIconKind.Tractor, "MachinesView"),
+                new MenuItem("Personnel", MaterialDesignThemes.Wpf.PackIconKind.User, "PersonnelView"),
+                new MenuItem("Data Ingest", MaterialDesignThemes.Wpf.PackIconKind.DatabaseAdd, "DataIngestView")
             };
         }
     }

@@ -40,10 +40,21 @@
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal" Margin="0,10,0,10" Width="{Binding ActualWidth, ElementName=nd}">
-                                <materialDesign:PackIcon Kind="{Binding Path=Icon}" Height="30" Width="30"/>
-                                <TextBlock VerticalAlignment="Center" Text="{Binding Path=Name}" Margin="10,0" FontSize="16" FontFamily="Segoe UI Semibold"/>
-                            </StackPanel>
+                            <Button Margin="0,10,0,10" 
+                                    Width="{Binding ActualWidth, ElementName=nd}"
+                                    Style="{StaticResource MaterialDesignFlatButton}"
+                                    Command="{Binding DataContext.ChangeViewCommand,
+                                RelativeSource={RelativeSource Mode=FindAncestor,
+                                                               AncestorType={x:Type ListView}}}"
+                                    CommandParameter="{Binding CommandParameter}">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="{Binding Path=Icon}" 
+                                                         Margin="10,0"
+                                                         Height="35"
+                                                         Width="35"/>
+                                    <TextBlock Text="{Binding ButtonText}"/>
+                                </StackPanel>
+                            </Button>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
