@@ -15,7 +15,7 @@ namespace MachineTracker
         /// <summary>
         /// The view model thats displayed
         /// </summary>
-        public object SelectedView { get; set; }
+        public BaseViewModel SelectedView { get; set; }
 
         /// <summary>
         /// The command that runs when a menu item is selected

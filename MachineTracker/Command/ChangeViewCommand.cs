@@ -11,7 +11,7 @@ namespace MachineTracker
         /// <summary>
         /// An placeholder from the MainWindowViewModel
         /// </summary>
-        MainWindowViewModel windowViewModel;
+        private readonly MainWindowViewModel windowViewModel;
 
         /// <summary>
         /// Event handler for the canexecute method

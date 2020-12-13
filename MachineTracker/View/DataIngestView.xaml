@@ -3,10 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MachineTracker"
+             xmlns:local="clr-namespace:MachineTracker" d:DataContext="{d:DesignInstance Type=local:DataIngestViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+    <Grid Background="{StaticResource MaterialDesignBackground}">
+        <StackPanel>
+            <TextBlock Margin="20,10" Text="Ingest Data" FontSize="20"/>
+            <TextBox Text="{Binding CSVPath}" Width="400" HorizontalAlignment="Left" Margin="20,10"/>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Begin" Margin="20" Command="{Binding BeginIngestCommand}"/>
+                <Button Content="..." Command="{Binding FileBrowserCommand}"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </UserControl>

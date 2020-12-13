@@ -10,7 +10,7 @@ namespace MachineTracker
         /// <summary>
         /// Action to be performed
         /// </summary>
-        private Action mAction;
+        private readonly Action mAction;
 
         /// <summary>
         /// Default constructor

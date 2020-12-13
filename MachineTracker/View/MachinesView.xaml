@@ -4,15 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:local="clr-namespace:MachineTracker" 
-             d:DataContext="{d:DesignInstance Type=local:MachinesViewModel}"
+             xmlns:local="clr-namespace:MachineTracker" d:DataContext="{d:DesignInstance Type=local:MachinesViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <Storyboard x:Key="OpenMenu">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" 
                                            Storyboard.TargetName="GridMenu">
-                <EasingDoubleKeyFrame KeyTime="0" Value="70"/>
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="300"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
@@ -20,21 +19,21 @@
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" 
                                            Storyboard.TargetName="GridMenu">
                 <EasingDoubleKeyFrame KeyTime="0" Value="300"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="70"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </UserControl.Resources>
 
     <UserControl.Triggers>
-            <EventTrigger RoutedEvent="ButtonBase.Click"
+        <EventTrigger RoutedEvent="ButtonBase.Click"
                       SourceName="ButtonOpenMenu">
-                <BeginStoryboard Storyboard="{StaticResource OpenMenu}"/>
-            </EventTrigger>
-            <EventTrigger RoutedEvent="ButtonBase.Click" 
+            <BeginStoryboard Storyboard="{StaticResource OpenMenu}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" 
                       SourceName="ButtonCloseMenu">
-                <BeginStoryboard Storyboard="{StaticResource CloseMenu}"/>
-            </EventTrigger>
-        </UserControl.Triggers>
+            <BeginStoryboard Storyboard="{StaticResource CloseMenu}"/>
+        </EventTrigger>
+    </UserControl.Triggers>
 
     
     <Grid>
@@ -43,10 +42,13 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <DataGrid Grid.ColumnSpan="2" ItemsSource="{Binding Machines}"/>
+        <DataGrid Grid.ColumnSpan="2" 
+                  ItemsSource="{Binding Machines}" 
+                  SelectionUnit="FullRow" 
+                  SelectionMode="Single" />
 
         <Grid x:Name="GridMenu" 
-              Width="70" 
+              Width="0" 
               HorizontalAlignment="Right" 
               Background="#FF31577E"
               Grid.Column="1">
