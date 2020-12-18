@@ -33,13 +33,23 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="{StaticResource PrimaryHueDarkBrush}"/>
+        <StackPanel Grid.Row="0" 
+                    Grid.Column="0" 
+                    Grid.ColumnSpan="2" 
+                    Background="{StaticResource PrimaryHueDarkBrush}">
+            <StackPanel.Effect>
+                <DropShadowEffect BlurRadius="2" ShadowDepth=".5"/>
+            </StackPanel.Effect>
+        </StackPanel>
         <!-- Grid Column 0 - Nav Drawer -->
         <StackPanel x:Name="nd" 
                     Grid.Column="0" 
                     Grid.RowSpan="2"
                     Grid.Row="1"
                     Background="{StaticResource PrimaryHueDarkBrush}">
+            <StackPanel.Effect>
+                <DropShadowEffect BlurRadius="2" ShadowDepth=".5"/>
+            </StackPanel.Effect>
             <StackPanel Orientation="Horizontal" Background="White">
                 <Image Source="/Assets/logo.png" 
                        Width="{Binding ActualWidth, ElementName=nd, Converter={StaticResource menuWidthConverter}}"/>
@@ -76,6 +86,5 @@
         <ContentControl Grid.Column="1" 
                         Grid.Row="1" 
                         Content="{Binding Path=SelectedView}"/>
-
     </Grid>
 </Window>

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace MachineTracker
 {
@@ -22,13 +23,16 @@ namespace MachineTracker
         {
             Context = new DatabaseContext();
 
-            LoadMachineData();
+            Machines = new ObservableCollection<Machine>();
 
-            // CSVHelper.IngestCSV("C:\\Users\\crust\\OneDrive\\Desktop\\Kitch\\Downer+Fleet_selected_2019-08-12_17.csv", Context);
+            Task.Run(() => LoadMachineData());
 
-            // Context.SaveChanges();
+            // TODO MACHINESVIEW: Show loading message while datatable is being populated
         }
 
+        /// <summary>
+        /// Loads in machine data from the database
+        /// </summary>
         private void LoadMachineData()
         {
             Context.Database.EnsureCreated();

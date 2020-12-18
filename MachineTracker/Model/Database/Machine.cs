@@ -63,6 +63,11 @@ namespace MachineTracker
         public virtual ICollection<ServiceHistory> ServiceHistory { get; set; }
 
         /// <summary>
+        /// Sets whether the machine is active
+        /// </summary>
+        public bool Active { get; set; } = true;
+
+        /// <summary>
         /// Default constructor
         /// </summary>
         public Machine()

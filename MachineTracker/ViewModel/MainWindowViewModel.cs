@@ -27,11 +27,14 @@ namespace MachineTracker
         /// </summary>
         public MainWindowViewModel()
         {
+            // View shown at start of program
+            SelectedView = new ServiceViewModel();
+
             ChangeViewCommand = new ChangeViewCommand(this);
 
             MenuItems = new List<MenuItem>
             {
-                new MenuItem("Service View", MaterialDesignThemes.Wpf.PackIconKind.Calendar, "ServiceView"),
+                new MenuItem("Overview", MaterialDesignThemes.Wpf.PackIconKind.Calendar, "ServiceView"),
                 new MenuItem("Machines", MaterialDesignThemes.Wpf.PackIconKind.Tractor, "MachinesView"),
                 new MenuItem("Personnel", MaterialDesignThemes.Wpf.PackIconKind.User, "PersonnelView"),
                 new MenuItem("Data Ingest", MaterialDesignThemes.Wpf.PackIconKind.DatabaseAdd, "DataIngestView")

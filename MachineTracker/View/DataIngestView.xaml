@@ -3,11 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MachineTracker" d:DataContext="{d:DesignInstance Type=local:DataIngestViewModel}"
+             xmlns:local="clr-namespace:MachineTracker" 
+             d:DataContext="{d:DesignInstance Type=local:DataIngestViewModel}"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="{StaticResource MaterialDesignBackground}">
-        <StackPanel>
+    <Grid Background="{StaticResource MaterialDesignBackground}" x:Name="grid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <StackPanel Grid.Row="0">
             <TextBlock Margin="20,10" Text="Ingest Data" FontSize="20"/>
             <TextBox Text="{Binding CSVPath}" Width="400" HorizontalAlignment="Left" Margin="20,10"/>
             <StackPanel Orientation="Horizontal">
@@ -15,5 +22,16 @@
                 <Button Content="..." Command="{Binding FileBrowserCommand}"/>
             </StackPanel>
         </StackPanel>
+
+        <DataGrid ItemsSource="{Binding CSVData}" 
+                  HorizontalScrollBarVisibility="Visible"
+                  Grid.Row="1">
+            <DataGrid.ItemTemplate>
+                <DataTemplate>
+                    <CheckBox></CheckBox>
+                </DataTemplate>
+            </DataGrid.ItemTemplate>
+        </DataGrid>
+        
     </Grid>
 </UserControl>

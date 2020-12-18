@@ -33,5 +33,12 @@ namespace MachineTracker
         /// Employee contact number
         /// </summary>
         public int ContactNo { get; set; }
+
+        /// <summary>
+        /// True if the employee is active.
+        /// False if not. Allows records to stay in database
+        /// without showing up in normal results.
+        /// </summary>
+        public bool Active { get; set; } = true;
     }
 }
