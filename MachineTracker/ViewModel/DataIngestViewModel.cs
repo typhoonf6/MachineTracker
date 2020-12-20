@@ -54,6 +54,7 @@ namespace MachineTracker
         {
             Context.Database.EnsureCreated();
             CSVData = await Task.Run(() => CSVHelper.IngestCSV(CSVPath));
+            SaveToDatabase();
         }
 
         /// <summary>
@@ -71,6 +72,20 @@ namespace MachineTracker
             {
                 CSVPath = fd.FileName;
             }
+        }
+
+        private void SaveToDatabase()
+        {
+            foreach (var data in CSVData)
+            {
+                Context.Machines.Local.Add(new Machine
+                {
+                    Serial = data.SerialNo,
+                    Type = data.Type,
+                    UnitNo = data.CustomerDesignation
+                });
+            }
+            Context.SaveChanges();
         }
     }
 }

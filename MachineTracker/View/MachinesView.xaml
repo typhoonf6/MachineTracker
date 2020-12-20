@@ -4,11 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:local="clr-namespace:MachineTracker" 
+             xmlns:local="clr-namespace:MachineTracker"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              d:DataContext="{d:DesignInstance Type=local:MachinesViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
+        <local:SerialStringConverter x:Key="serialStringConverter"/>
         <Storyboard x:Key="OpenMenu">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" 
                                            Storyboard.TargetName="GridMenu">
@@ -24,7 +26,6 @@
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </UserControl.Resources>
-
     <UserControl.Triggers>
         <EventTrigger RoutedEvent="ButtonBase.Click"
                       SourceName="ButtonOpenMenu">
@@ -35,19 +36,63 @@
             <BeginStoryboard Storyboard="{StaticResource CloseMenu}"/>
         </EventTrigger>
     </UserControl.Triggers>
-
-    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-
-        <DataGrid Grid.ColumnSpan="2" 
-                  ItemsSource="{Binding Machines}" 
-                  SelectionUnit="FullRow" 
-                  SelectionMode="Single" />
-
+        <ListView x:Name="listView"
+                  Grid.ColumnSpan="2"
+                  ItemsSource="{Binding Machines}"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                  SelectionChanged="ButtonOpenMenu_Click">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border Background="{StaticResource PrimaryHueDarkForegroundBrush}"
+                            CornerRadius="3"
+                            Margin="0,5"
+                            Padding="5">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="2"
+                                              ShadowDepth="2"/>
+                        </Border.Effect>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid Background="{StaticResource PrimaryHueDarkBrush}"
+                                  Width="{Binding ActualWidth, ElementName=ugColumn}">
+                                <TextBlock Text="{Binding UnitNo, Converter={StaticResource serialStringConverter}}" 
+                                           FontWeight="Bold"
+                                           Padding="5"
+                                           Foreground="White"/>
+                            </Grid>
+                            <StackPanel Grid.Row="1">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="S/N: "/>
+                                    <TextBlock Text="{Binding Serial}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Type: "/>
+                                    <TextBlock Text="{Binding Type}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid x:Name="ugColumn" Columns="2"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.Triggers>
+                <EventTrigger RoutedEvent="ListView.SelectionChanged" SourceName="listView">
+                    <BeginStoryboard Storyboard="{StaticResource OpenMenu}"/>
+                </EventTrigger>
+            </ListView.Triggers>
+        </ListView>
         <Grid x:Name="GridMenu" 
               Width="0" 
               HorizontalAlignment="Right" 
@@ -55,8 +100,7 @@
               Grid.Column="1">
             <Grid.Effect>
                 <DropShadowEffect BlurRadius="2" 
-                                  ShadowDepth="1" 
-                                  Color="#FFAEAEAE"/>
+                                  ShadowDepth="1"/>
             </Grid.Effect>
             <StackPanel>
                 <Grid Height="150" 
