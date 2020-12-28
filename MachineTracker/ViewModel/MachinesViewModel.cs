@@ -17,6 +17,11 @@ namespace MachineTracker
         public ObservableCollection<Machine> Machines { get; set; }
 
         /// <summary>
+        /// Machine that is selected by the user on the view
+        /// </summary>
+        public Machine SelectedMachine { get; set; }
+
+        /// <summary>
         /// Default constructor
         /// </summary>
         public MachinesViewModel()
@@ -34,10 +39,12 @@ namespace MachineTracker
         /// Loads in machine data from the database
         /// </summary>
         private void LoadMachineData()
-        {
-            Context.Database.EnsureCreated();
-            Context.Machines.Load();
-            Machines = Context.Machines.Local.ToObservableCollection();
+        { 
+            if (Context.Database.CanConnect())
+            {
+                Context.Machines.Load();
+                Machines = Context.Machines.Local.ToObservableCollection();
+            }
         }
     }
 }

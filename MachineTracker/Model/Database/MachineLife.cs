@@ -35,5 +35,24 @@ namespace MachineTracker
         /// Link to the machine this is associated with
         /// </summary>
         public virtual Machine Machine { get; set; }
+
+        /// <summary>
+        /// Default Constructor
+        /// </summary>
+        /// <param name="hours"></param>
+        /// <param name="nextServiceHours"></param>
+        public MachineLife(double hours, double nextServiceHours)
+        {
+            Hours = hours;
+            NextServiceHours = nextServiceHours;
+        }
+
+        /// <summary>
+        /// Default Constructor
+        /// </summary>
+        public MachineLife()
+        {
+
+        }
     }
 }

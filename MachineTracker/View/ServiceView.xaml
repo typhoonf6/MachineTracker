@@ -27,16 +27,23 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Border Background="{StaticResource ValidationErrorBrush}"
+            <Grid.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+                    <Setter Property="FontSize" Value="14"/>
+                </Style>
+            </Grid.Resources>
+            <Border Background="{StaticResource PrimaryHueDarkBrush}"
                     CornerRadius="10"
                     Margin="5">
                 <Border.Effect>
-                    <DropShadowEffect BlurRadius="2" ShadowDepth=".5"/>
+                    <DropShadowEffect BlurRadius="2" ShadowDepth="2"/>
                 </Border.Effect>
                 <StackPanel Grid.Column="0"
                             Grid.Row="1"
                             Margin="10">
-                    <TextBlock Text="Machine With Next Due Service" Foreground="White"/>
+                    <TextBlock Text="Next Due Service" FontSize="18"/>
                     <TextBlock Text="Serial"/>
                     <TextBlock Text="Servicing Type"/>
                     <TextBlock Text="Hours"/>
@@ -51,7 +58,7 @@
                     Margin="5"
                     Grid.Row="1">
                 <Border.Effect>
-                    <DropShadowEffect BlurRadius="2" ShadowDepth=".5"/>
+                    <DropShadowEffect BlurRadius="2" ShadowDepth="2"/>
                 </Border.Effect>
                 <StackPanel Grid.Column="0"
                             Grid.Row="1"
@@ -67,7 +74,7 @@
                 Grid.Row="1"
                 Grid.Column="1">
             <Border.Effect>
-                <DropShadowEffect BlurRadius="2" ShadowDepth=".5"/>
+                <DropShadowEffect BlurRadius="2" ShadowDepth="2"/>
             </Border.Effect>
             <StackPanel Grid.Column="0"
                         Grid.Row="1"

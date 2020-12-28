@@ -50,17 +50,15 @@ namespace MachineTracker
         /// <summary>
         /// Ingests the CSV file and saves it into the database
         /// </summary>
-        private async void BeginIngest()
+        private void BeginIngest()
         {
-            Context.Database.EnsureCreated();
-            CSVData = await Task.Run(() => CSVHelper.IngestCSV(CSVPath));
             SaveToDatabase();
         }
 
         /// <summary>
         /// Opens the file browser to allow the user to select a csv file
         /// </summary>
-        private void OpenFileBrowser()
+        private async void OpenFileBrowser()
         {
             var fd = new OpenFileDialog()
             {
@@ -71,6 +69,8 @@ namespace MachineTracker
             if (fd.ShowDialog() == true)
             {
                 CSVPath = fd.FileName;
+                Context.Database.EnsureCreated();
+                CSVData = await Task.Run(() => CSVHelper.IngestCSV(CSVPath));
             }
         }
 
@@ -78,11 +78,15 @@ namespace MachineTracker
         {
             foreach (var data in CSVData)
             {
+                var life = new MachineLife(data.OperatingHours, data.MaintExpectedHours);
                 Context.Machines.Local.Add(new Machine
                 {
                     Serial = data.SerialNo,
                     Type = data.Type,
-                    UnitNo = data.CustomerDesignation
+                    UnitNo = data.CustomerDesignation,
+                    Brand = data.Brand,
+                    Owner = data.Owner,
+                    MachineLife = life
                 });
             }
             Context.SaveChanges();

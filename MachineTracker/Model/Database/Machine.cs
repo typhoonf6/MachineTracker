@@ -48,6 +48,21 @@ namespace MachineTracker
         public string Type { get; set; }
 
         /// <summary>
+        /// Brand of the machine
+        /// </summary>
+        public string Brand { get; set; }
+
+        /// <summary>
+        /// Owner
+        /// </summary>
+        public string Owner { get; set; }
+
+        /// <summary>
+        /// Location for the display image
+        /// </summary>
+        public string ImageLocation { get; set; } = @"/Assets/placeholder.jpg";
+
+        /// <summary>
         /// Status of the machine <see cref="Status"/>
         /// </summary>
         public Status? Status { get; set; }

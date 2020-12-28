@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MachineTracker"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         d:DataContext="{d:DesignInstance Type=local:MainWindowViewModel}"
-        mc:Ignorable="d" Height="972" Width="1728" ResizeMode="CanResize" 
+        mc:Ignorable="d" Height="700" Width="1200" ResizeMode="CanResize" 
             WindowStyle="None" MouseDown="Window_MouseDown">
     <Window.Resources>
         <local:MenuWidthConverter x:Key="menuWidthConverter"/>
@@ -56,24 +56,26 @@
             </StackPanel>
             <StackPanel HorizontalAlignment="Left">
                 <ListView ItemsSource="{Binding MenuItems}" 
-                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                          HorizontalContentAlignment="Left"
-                          HorizontalAlignment="Left">
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Button Margin="0,10,0,10" 
+                            <Button Margin="0,10" 
                                     Width="{Binding ActualWidth, ElementName=nd}"
                                     Style="{StaticResource MaterialDesignFlatButton}"
                                     Command="{Binding DataContext.ChangeViewCommand,
                                 RelativeSource={RelativeSource Mode=FindAncestor,
                                                                AncestorType={x:Type ListView}}}"
                                     CommandParameter="{Binding CommandParameter}">
-                                <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Horizontal"
+                                            HorizontalAlignment="Left">
                                     <materialDesign:PackIcon Kind="{Binding Path=Icon}" 
-                                                         Margin="10,0"
-                                                         Height="35"
-                                                         Width="35"/>
-                                    <TextBlock Text="{Binding ButtonText}"/>
+                                                             Margin="10,0"
+                                                             Height="25"
+                                                             Width="25"
+                                                             Foreground="White"/>
+                                    <TextBlock Text="{Binding ButtonText}"
+                                               FontSize="18"
+                                               Foreground="White"/>
                                 </StackPanel>
                             </Button>
                         </DataTemplate>

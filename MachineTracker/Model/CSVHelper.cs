@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using System.Data;
 using System.Globalization;
 using System.IO;
-using System.Threading.Tasks;
 using LumenWorks.Framework.IO.Csv;
 
 namespace MachineTracker
